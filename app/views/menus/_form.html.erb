@@ -1,32 +1,56 @@
-<%= form_with(model: menu, local: true) do |form| %>
-  <% if menu.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
 
-      <ul>
-      <% menu.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+
+
+<div class="wrapper ">
+    
+    <div class="main-panel">
+      <!-- Navbar -->
+      
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Menu</h4>
+                  <p class="card-category">Complete your menus</p>
+                </div>
+                <div class="card-body">
+                  <%= form_with(model: menu, local: true) do |form| %>
+                    <% if menu.errors.any? %>
+                      <div id="error_explanation">
+                        <h2><%= pluralize(menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
+
+                        <ul>
+                        <% menu.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                        </ul>
+                      </div>
+                    <% end %>
+                    <div class="field">
+                      <%= form.label :name %>
+                      <%= form.text_field :name %>
+                    </div>
+                    <div class="fields">
+                      <%= form.fields_for :submenus do |builder| %>
+                        <%= render 'submenu', f: builder  %>
+                      <% end %>
+                    </div>
+                    <%= link_to_add_row('', form, :submenus, class: 'fa fa-plus pull-right') %>
+                    <%= form.submit "Add", class: "btn btn-primary pull-right"%>
+                    <!-- <button type="submit" class="btn btn-primary pull-right">Update Profile</button> -->
+                    <div class="clearfix"></div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+     
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
   </div>
-
-  <%= form.fields_for :sub_menus do |f| %>
-    <div class="field">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.hidden_field :menu_id %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+ 

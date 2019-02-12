@@ -22,5 +22,21 @@
 //= require material/demo
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require_tree .
+
+
+$('form').on('click', '.add_fields', function(event) {
+        
+   var time, regexp;
+   time = new Date().getTime()
+   regexp = new RegExp($(this).data('id'), 'g');
+   $('.fields').append($(this).data('fields').replace(regexp, time));;  
+});
+
+
+// for remove row dynamic in quotation/new
+$('form').on('click', '.remove_record', function(event) {
+    $(this).parents('.submenu').remove();
+    if ($('.remove_record').length < 2) $('.remove_record').hide();
+    
+});

@@ -11,13 +11,15 @@
  * It is generally better to create a new file per style scope.
  *
  *= require font-awesome
+ *= require material/material-dashboard.css
 *= require material/material-dashboard.css
 *= require material/material-dashboard-rtl.css
 *= require material/material-dashboard.min.css
-*= require material/material-dashboard.css
+
 *= require material/demo
 
 
  *= require_tree .
- *= require_self
+
  */
+
